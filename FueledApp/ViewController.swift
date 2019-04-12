@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let logoButton = UIButton(type: .custom)
+    var bigButton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,17 @@ class ViewController: UIViewController {
     }
     
     @objc func logoTap() {
-        UIView.animate(withDuration: 0.5, animations: {() -> Void in
-            self.logoButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-        })
+        if (bigButton) {
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
+                self.logoButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            })
+            bigButton = false;
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
+                self.logoButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            })
+            bigButton = true;
+        }
     }
     
     func createButtons() {
@@ -41,15 +50,15 @@ class ViewController: UIViewController {
         view.addSubview(menuButton)
         menuButton.translatesAutoresizingMaskIntoConstraints = false
         menuButton.addTarget(self, action: #selector(menuTap), for: .touchUpInside)
-        menuButton.setTitle("Menu", for: .normal)
-        menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor, multiplier: 1.0).isActive = true
-        menuButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        menuButton.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        menuButton.setTitle("PPL O FUELED", for: .normal)
+        menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor, multiplier: 0.66).isActive = true
+        menuButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25).isActive = true
+        menuButton.setBackgroundImage(UIImage(named: "hotpepper"), for: .normal)
 
-        menuButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/4).isActive = true
+        menuButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/5).isActive = true
         menuButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
 
-        
+        /*
         let quoteOTD = UIButton()
         //create quote button
         view.addSubview(quoteOTD)
@@ -62,58 +71,85 @@ class ViewController: UIViewController {
 
         quoteOTD.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/8).isActive = true
         quoteOTD.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
+        */
         
         let instagram = UIButton()
         //create quote button
         view.addSubview(instagram)
         instagram.translatesAutoresizingMaskIntoConstraints = false
         instagram.addTarget(self, action: #selector(instaTap), for: .touchUpInside)
-        instagram.setTitle("Instagram", for: .normal)
-        instagram.heightAnchor.constraint(equalTo: instagram.widthAnchor, multiplier: 1.0).isActive = true
-        instagram.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        instagram.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        //instagram.setTitle("Instagram", for: .normal)
+        instagram.heightAnchor.constraint(equalTo: instagram.widthAnchor, multiplier: 1.3).isActive = true
+        instagram.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
+        instagram.setBackgroundImage(UIImage(named: "eggplant"), for: .normal)
         
-        instagram.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/32).isActive = true
-        instagram.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/8).isActive = true
+        instagram.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/16).isActive = true
+        instagram.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/5).isActive = true
+        
+        let instaLabel = UILabel()
+        view.addSubview(instaLabel)
+        instaLabel.translatesAutoresizingMaskIntoConstraints = false
+        instaLabel.text = "Instagram"
+        instaLabel.topAnchor.constraint(equalTo: instagram.bottomAnchor, constant: 0).isActive = true
+        instaLabel.heightAnchor.constraint(equalTo: instagram.heightAnchor, multiplier: 0.4).isActive = true
+        instaLabel.centerXAnchor.constraint(equalTo: instagram.centerXAnchor, constant:0).isActive = true
         
         let other1 = UIButton()
         //create quote button
         view.addSubview(other1)
         other1.translatesAutoresizingMaskIntoConstraints = false
         other1.addTarget(self, action: #selector(other1Func), for: .touchUpInside)
-        other1.setTitle("other1", for: .normal)
+        other1.setTitle("quote", for: .normal)
         other1.heightAnchor.constraint(equalTo: other1.widthAnchor, multiplier: 1.0).isActive = true
         other1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        other1.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        other1.setBackgroundImage(UIImage(named: "corn"), for: .normal)
         
-        other1.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/7).isActive = true
+        other1.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
         other1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/8).isActive = true
         
-        let other2 = UIButton()
+        let order = UIButton()
         //create quote button
-        view.addSubview(other2)
-        other2.translatesAutoresizingMaskIntoConstraints = false
-        other2.addTarget(self, action: #selector(other2Func), for: .touchUpInside)
-        other2.setTitle("other2", for: .normal)
-        other2.heightAnchor.constraint(equalTo: other2.widthAnchor, multiplier: 1.0).isActive = true
-        other2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        other2.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        view.addSubview(order)
+        order.translatesAutoresizingMaskIntoConstraints = false
+        order.addTarget(self, action: #selector(openTapingo), for: .touchUpInside)
+        //order.setTitle("Order\nOnline", for: .normal)
+        order.setBackgroundImage(UIImage(named: "onion"), for: .normal)
+        //order.titleLabel?.lineBreakMode = .byWordWrapping//make button title multiple lines
+        order.titleLabel?.textAlignment = .center
+        order.heightAnchor.constraint(equalTo: order.widthAnchor, multiplier: 1.0).isActive = true
+        order.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        //order.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
         
-        other2.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/7).isActive = true
-        other2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
+        let orderLabel = UILabel()
+        view.addSubview(orderLabel)
+        orderLabel.translatesAutoresizingMaskIntoConstraints = false
+        orderLabel.text = "Order Online"
+        orderLabel.topAnchor.constraint(equalTo: order.bottomAnchor, constant: 0).isActive = true
+        orderLabel.heightAnchor.constraint(equalTo: order.heightAnchor, multiplier: 0.4).isActive = true
+        orderLabel.centerXAnchor.constraint(equalTo: order.centerXAnchor, constant:0).isActive = true
         
-        let other3 = UIButton()
+        order.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
+        order.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
+        
+        let history = UIButton()
         //create quote button
-        view.addSubview(other3)
-        other3.translatesAutoresizingMaskIntoConstraints = false
-        other3.addTarget(self, action: #selector(other3Func), for: .touchUpInside)
-        other3.setTitle("other3", for: .normal)
-        other3.heightAnchor.constraint(equalTo: other3.widthAnchor, multiplier: 1.0).isActive = true
-        other3.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        other3.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        view.addSubview(history)
+        history.translatesAutoresizingMaskIntoConstraints = false
+        history.addTarget(self, action: #selector(historyFunc), for: .touchUpInside)
+        //other3.setTitle("other3", for: .normal)
+        history.heightAnchor.constraint(equalTo: history.widthAnchor, multiplier: 1.0).isActive = true
+        history.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        history.setBackgroundImage(UIImage(named: "greenpepper"), for: .normal)
         
-        other3.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/32).isActive = true
-        other3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
+        history.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/16).isActive = true
+        history.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5/8).isActive = true
+        let historyLabel = UILabel()
+        view.addSubview(historyLabel)
+        historyLabel.translatesAutoresizingMaskIntoConstraints = false
+        historyLabel.text = "History"
+        historyLabel.topAnchor.constraint(equalTo: history.bottomAnchor, constant: 0).isActive = true
+        historyLabel.heightAnchor.constraint(equalTo: history.heightAnchor, multiplier: 0.4).isActive = true
+        historyLabel.centerXAnchor.constraint(equalTo: history.centerXAnchor, constant:0).isActive = true
     }
     
     @objc func menuTap() {
@@ -123,16 +159,29 @@ class ViewController: UIViewController {
         
     }
     @objc func instaTap() {
-        
+        guard let url = URL(string: "https://instagram.com/jmufueled") else {return}
+        if (UIApplication.shared.canOpenURL(url)) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     @objc func other1Func() {
         
     }
-    @objc func other2Func() {
-        
+    @objc func openTapingo() {
+        let url = URL(string: "https://www.tapingo.com/order/restaurant/ming-dynasty-restaurant-lounge-posind-uva/")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
-    @objc func other3Func() {
-        
+    
+    @objc func historyFunc() {
+        present(History(), animated: true, completion: nil)
     }
 
 }
