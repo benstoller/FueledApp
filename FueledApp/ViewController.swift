@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     let logoButton = UIButton(type: .custom)
     var bigButton = true
+    var treeTrunk = UIImageView()
+    var treeLeaves = UIImageView()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,30 @@ class ViewController: UIViewController {
         logoButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         logoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.width/2).isActive = true
         //logoButton.showsTouchWhenHighlighted = false
+        
+        //Add design stuff
+        view.addSubview(treeTrunk)
+        treeTrunk.translatesAutoresizingMaskIntoConstraints = false
+        treeTrunk.image = UIImage(named: "trunk2")
+        treeTrunk.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+        treeTrunk.topAnchor.constraint(equalTo: logoButton.centerYAnchor, constant: 0).isActive = true
+
+        treeTrunk.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        treeTrunk.contentMode = .scaleAspectFit
+        treeTrunk.layer.zPosition -= 10
+        
+        view.addSubview(treeLeaves)
+        treeLeaves.translatesAutoresizingMaskIntoConstraints = false
+        treeLeaves.image = UIImage(named: "leaves1")
+        treeLeaves.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1).isActive = true
+        treeLeaves.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.4).isActive = true
+
+        treeLeaves.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        treeLeaves.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        //treeLeaves.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        //treeLeaves.contentMode = .scaleAspectFit
+        treeLeaves.layer.zPosition -= 7
     }
     
     @objc func logoTap() {
@@ -45,33 +72,29 @@ class ViewController: UIViewController {
     
     func createButtons() {
 
-        let menuButton = UIButton()
+        let pplOfButton = UIButton()
         //create menu button
-        view.addSubview(menuButton)
-        menuButton.translatesAutoresizingMaskIntoConstraints = false
-        menuButton.addTarget(self, action: #selector(menuTap), for: .touchUpInside)
-        menuButton.setTitle("PPL O FUELED", for: .normal)
-        menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor, multiplier: 0.66).isActive = true
-        menuButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25).isActive = true
-        menuButton.setBackgroundImage(UIImage(named: "hotpepper"), for: .normal)
+        view.addSubview(pplOfButton)
+        pplOfButton.translatesAutoresizingMaskIntoConstraints = false
+        pplOfButton.addTarget(self, action: #selector(menuTap), for: .touchUpInside)
+        //pplOfButton.setTitle("PPL O FUELED", for: .normal)
+        pplOfButton.heightAnchor.constraint(equalTo: pplOfButton.widthAnchor, multiplier: 0.66).isActive = true
+        pplOfButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25).isActive = true
+        pplOfButton.setBackgroundImage(UIImage(named: "hotpepper"), for: .normal)
 
-        menuButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/5).isActive = true
-        menuButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
+        pplOfButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/5).isActive = true
+        //pplOfButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
+        //looks a little off with the commented code from above so i changed the constarint to the code below
+        pplOfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        let pplOfLabel = UILabel()
+        view.addSubview(pplOfLabel)
+        pplOfLabel.translatesAutoresizingMaskIntoConstraints = false
+        pplOfLabel.text = "People Of"
+        pplOfLabel.topAnchor.constraint(equalTo: pplOfButton.bottomAnchor, constant: 0).isActive = true
+        pplOfLabel.heightAnchor.constraint(equalTo: pplOfButton.heightAnchor, multiplier: 0.4).isActive = true
+        pplOfLabel.centerXAnchor.constraint(equalTo: pplOfButton.centerXAnchor, constant:0).isActive = true
 
-        /*
-        let quoteOTD = UIButton()
-        //create quote button
-        view.addSubview(quoteOTD)
-        quoteOTD.translatesAutoresizingMaskIntoConstraints = false
-        quoteOTD.addTarget(self, action: #selector(quoteTap), for: .touchUpInside)
-        quoteOTD.setTitle("Quote", for: .normal)
-        quoteOTD.heightAnchor.constraint(equalTo: quoteOTD.widthAnchor, multiplier: 1.0).isActive = true
-        quoteOTD.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        quoteOTD.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
-
-        quoteOTD.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/8).isActive = true
-        quoteOTD.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
-        */
         
         let instagram = UIButton()
         //create quote button
@@ -94,18 +117,27 @@ class ViewController: UIViewController {
         instaLabel.heightAnchor.constraint(equalTo: instagram.heightAnchor, multiplier: 0.4).isActive = true
         instaLabel.centerXAnchor.constraint(equalTo: instagram.centerXAnchor, constant:0).isActive = true
         
-        let other1 = UIButton()
+        let quote = UIButton()
         //create quote button
-        view.addSubview(other1)
-        other1.translatesAutoresizingMaskIntoConstraints = false
-        other1.addTarget(self, action: #selector(other1Func), for: .touchUpInside)
-        other1.setTitle("quote", for: .normal)
-        other1.heightAnchor.constraint(equalTo: other1.widthAnchor, multiplier: 1.0).isActive = true
-        other1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        other1.setBackgroundImage(UIImage(named: "corn"), for: .normal)
+        view.addSubview(quote)
+        quote.translatesAutoresizingMaskIntoConstraints = false
+        quote.addTarget(self, action: #selector(quoteTap), for: .touchUpInside)
+        //quote.setTitle("quote", for: .normal)
+        quote.heightAnchor.constraint(equalTo: quote.widthAnchor, multiplier: 1.0).isActive = true
+        quote.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        quote.setBackgroundImage(UIImage(named: "corn"), for: .normal)
         
-        other1.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
-        other1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/8).isActive = true
+        quote.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
+        quote.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/8).isActive = true
+        let quoteLabel = UILabel()
+        view.addSubview(quoteLabel)
+        quoteLabel.translatesAutoresizingMaskIntoConstraints = false
+        quoteLabel.text = "Inspo Quote"
+        quoteLabel.topAnchor.constraint(equalTo: quote.bottomAnchor, constant: 0).isActive = true
+        quoteLabel.heightAnchor.constraint(equalTo: quote.heightAnchor, multiplier: 0.4).isActive = true
+        quoteLabel.centerXAnchor.constraint(equalTo: quote.centerXAnchor, constant:0).isActive = true
+        
+        
         
         let order = UIButton()
         //create quote button
@@ -156,7 +188,7 @@ class ViewController: UIViewController {
         
     }
     @objc func quoteTap() {
-        
+        present(Quote(), animated: true, completion: nil)
     }
     @objc func instaTap() {
         guard let url = URL(string: "https://instagram.com/jmufueled") else {return}
