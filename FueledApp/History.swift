@@ -62,7 +62,7 @@ class History: UIViewController {
     let menuButton : UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Menu", for: .normal)
+        button.setTitle("Home", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(menu), for: .touchUpInside)
         button.layer.cornerRadius = 5

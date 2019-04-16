@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 135, green: 183, blue: 130)
+        view.backgroundColor = UIColor(red: 135, green: 183, blue: 130)//pastel green
+        //view.backgroundColor = UIColor(red: 135, green: 206, blue: 235)//sky blue
         
         createButtons()
         
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
         //logoButton.showsTouchWhenHighlighted = false
         
         //Add design stuff
+        
         view.addSubview(treeTrunk)
         treeTrunk.translatesAutoresizingMaskIntoConstraints = false
         treeTrunk.image = UIImage(named: "trunk2")
@@ -45,20 +47,36 @@ class ViewController: UIViewController {
         view.addSubview(treeLeaves)
         treeLeaves.translatesAutoresizingMaskIntoConstraints = false
         treeLeaves.image = UIImage(named: "leaves1")
-        treeLeaves.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1).isActive = true
+        treeLeaves.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         treeLeaves.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.4).isActive = true
-
+        
         treeLeaves.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
         treeLeaves.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         
         //treeLeaves.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         //treeLeaves.contentMode = .scaleAspectFit
         treeLeaves.layer.zPosition -= 7
+ 
+        /*
+        view.addSubview(treeLeaves)
+        treeLeaves.translatesAutoresizingMaskIntoConstraints = false
+        treeLeaves.image = UIImage(named: "branches1")
+        treeLeaves.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+        treeLeaves.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.4).isActive = true
+
+        treeLeaves.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 130).isActive = true
+        treeLeaves.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        //treeLeaves.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        //treeLeaves.contentMode = .scaleAspectFit
+        treeLeaves.layer.zPosition -= 7
+ */
+        logoTap()
     }
     
     @objc func logoTap() {
         if (bigButton) {
-            UIView.animate(withDuration: 0.5, animations: {() -> Void in
+            UIView.animate(withDuration: 3.0, animations: {() -> Void in
                 self.logoButton.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             })
             bigButton = false;
@@ -73,11 +91,9 @@ class ViewController: UIViewController {
     func createButtons() {
 
         let pplOfButton = UIButton()
-        //create menu button
         view.addSubview(pplOfButton)
         pplOfButton.translatesAutoresizingMaskIntoConstraints = false
-        pplOfButton.addTarget(self, action: #selector(menuTap), for: .touchUpInside)
-        //pplOfButton.setTitle("PPL O FUELED", for: .normal)
+        pplOfButton.addTarget(self, action: #selector(pplOfTap), for: .touchUpInside)
         pplOfButton.heightAnchor.constraint(equalTo: pplOfButton.widthAnchor, multiplier: 0.66).isActive = true
         pplOfButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25).isActive = true
         pplOfButton.setBackgroundImage(UIImage(named: "hotpepper"), for: .normal)
@@ -97,11 +113,9 @@ class ViewController: UIViewController {
 
         
         let instagram = UIButton()
-        //create quote button
         view.addSubview(instagram)
         instagram.translatesAutoresizingMaskIntoConstraints = false
         instagram.addTarget(self, action: #selector(instaTap), for: .touchUpInside)
-        //instagram.setTitle("Instagram", for: .normal)
         instagram.heightAnchor.constraint(equalTo: instagram.widthAnchor, multiplier: 1.3).isActive = true
         instagram.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
         instagram.setBackgroundImage(UIImage(named: "eggplant"), for: .normal)
@@ -118,11 +132,9 @@ class ViewController: UIViewController {
         instaLabel.centerXAnchor.constraint(equalTo: instagram.centerXAnchor, constant:0).isActive = true
         
         let quote = UIButton()
-        //create quote button
         view.addSubview(quote)
         quote.translatesAutoresizingMaskIntoConstraints = false
         quote.addTarget(self, action: #selector(quoteTap), for: .touchUpInside)
-        //quote.setTitle("quote", for: .normal)
         quote.heightAnchor.constraint(equalTo: quote.widthAnchor, multiplier: 1.0).isActive = true
         quote.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         quote.setBackgroundImage(UIImage(named: "corn"), for: .normal)
@@ -132,7 +144,7 @@ class ViewController: UIViewController {
         let quoteLabel = UILabel()
         view.addSubview(quoteLabel)
         quoteLabel.translatesAutoresizingMaskIntoConstraints = false
-        quoteLabel.text = "Inspo Quote"
+        quoteLabel.text = "Quotes"
         quoteLabel.topAnchor.constraint(equalTo: quote.bottomAnchor, constant: 0).isActive = true
         quoteLabel.heightAnchor.constraint(equalTo: quote.heightAnchor, multiplier: 0.4).isActive = true
         quoteLabel.centerXAnchor.constraint(equalTo: quote.centerXAnchor, constant:0).isActive = true
@@ -140,17 +152,13 @@ class ViewController: UIViewController {
         
         
         let order = UIButton()
-        //create quote button
         view.addSubview(order)
         order.translatesAutoresizingMaskIntoConstraints = false
         order.addTarget(self, action: #selector(openTapingo), for: .touchUpInside)
-        //order.setTitle("Order\nOnline", for: .normal)
         order.setBackgroundImage(UIImage(named: "onion"), for: .normal)
-        //order.titleLabel?.lineBreakMode = .byWordWrapping//make button title multiple lines
         order.titleLabel?.textAlignment = .center
         order.heightAnchor.constraint(equalTo: order.widthAnchor, multiplier: 1.0).isActive = true
         order.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        //order.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
         
         let orderLabel = UILabel()
         view.addSubview(orderLabel)
@@ -164,11 +172,9 @@ class ViewController: UIViewController {
         order.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
         
         let history = UIButton()
-        //create quote button
         view.addSubview(history)
         history.translatesAutoresizingMaskIntoConstraints = false
         history.addTarget(self, action: #selector(historyFunc), for: .touchUpInside)
-        //other3.setTitle("other3", for: .normal)
         history.heightAnchor.constraint(equalTo: history.widthAnchor, multiplier: 1.0).isActive = true
         history.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         history.setBackgroundImage(UIImage(named: "greenpepper"), for: .normal)
@@ -184,9 +190,6 @@ class ViewController: UIViewController {
         historyLabel.centerXAnchor.constraint(equalTo: history.centerXAnchor, constant:0).isActive = true
     }
     
-    @objc func menuTap() {
-        
-    }
     @objc func quoteTap() {
         present(Quote(), animated: true, completion: nil)
     }
@@ -200,9 +203,11 @@ class ViewController: UIViewController {
             }
         }
     }
-    @objc func other1Func() {
+    
+    @objc func pplOfTap() {
         
     }
+    
     @objc func openTapingo() {
         let url = URL(string: "https://www.tapingo.com/order/restaurant/ming-dynasty-restaurant-lounge-posind-uva/")!
         if #available(iOS 10.0, *) {
