@@ -21,7 +21,7 @@ class Quote: UIViewController {
         //if list is empty, app will crash
         let curQuote = listOfQuotes.randomElement()!
         
-        view.backgroundColor = .black
+        //view.backgroundColor = .black
         view.addSubview(mainStack)
         //setup main stack
         mainStack.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +31,7 @@ class Quote: UIViewController {
         mainStack.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.0).isActive = true
         mainStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
+        /*
         //setup title image
         mainStack.addArrangedSubview(TitleImage)
         TitleImage.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +39,7 @@ class Quote: UIViewController {
         TitleImage.heightAnchor.constraint(equalTo: TitleImage.widthAnchor, multiplier: 292/1144).isActive = true
         TitleImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         TitleImage.contentMode = .scaleAspectFit
+        */
         
         mainStack.addArrangedSubview(bodyText)
         bodyText.translatesAutoresizingMaskIntoConstraints = false
@@ -57,9 +59,11 @@ class Quote: UIViewController {
         instr += curQuote
         bodyText.text = instr
         bodyText.textAlignment = .center
-        bodyText.textColor = .green
         
-        self.view.backgroundColor = .blue
+        bodyText.textColor = .white
+        self.view.backgroundColor = UIColor(red: 77, green: 130, blue: 76)
+        view.layer.contents = #imageLiteral(resourceName: "wood2").cgImage
+
         
         mainStack.addArrangedSubview(menuButton)
         menuButton.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
@@ -187,3 +191,5 @@ class Quote: UIViewController {
     }
     
 }
+
+

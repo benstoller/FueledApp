@@ -11,16 +11,22 @@ import UIKit
 class ViewController: UIViewController {
     let logoButton = UIButton(type: .custom)
     var bigButton = true
+    var truck = UIImageView()
     var treeTrunk = UIImageView()
     var treeLeaves = UIImageView()
+    var textColor = UIColor()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 135, green: 183, blue: 130)//pastel green
+        //view.backgroundColor = UIColor(red: 135, green: 183, blue: 130)//pastel green
         //view.backgroundColor = UIColor(red: 135, green: 206, blue: 235)//sky blue
-        
+        textColor = .white
+        view.backgroundColor = .white
         createButtons()
+        
+        view.layer.contents = #imageLiteral(resourceName: "galaxy").cgImage
+        //
         
         //create logo button
         view.addSubview(logoButton)
@@ -33,6 +39,7 @@ class ViewController: UIViewController {
         //logoButton.showsTouchWhenHighlighted = false
         
         //Add design stuff
+        
         
         view.addSubview(treeTrunk)
         treeTrunk.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +59,18 @@ class ViewController: UIViewController {
         
         treeLeaves.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
         treeLeaves.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        view.addSubview(truck)
+        truck.translatesAutoresizingMaskIntoConstraints = false
+        truck.image = UIImage(named: "truck1")
+        truck.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+        truck.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        //truck.bottomAnchor.constraint(equalTo: treeLeaves.topAnchor, constant: 0).isActive = true
+        //truck.contentMode = .scaleAspectFill
+        //truck.contentMode = .scaleToFill
+        truck.contentMode = .scaleAspectFit
+
+        truck.layer.zPosition -= 10
         
         //treeLeaves.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         //treeLeaves.contentMode = .scaleAspectFit
@@ -110,6 +129,7 @@ class ViewController: UIViewController {
         pplOfLabel.topAnchor.constraint(equalTo: pplOfButton.bottomAnchor, constant: 0).isActive = true
         pplOfLabel.heightAnchor.constraint(equalTo: pplOfButton.heightAnchor, multiplier: 0.4).isActive = true
         pplOfLabel.centerXAnchor.constraint(equalTo: pplOfButton.centerXAnchor, constant:0).isActive = true
+        pplOfLabel.textColor = textColor
 
         
         let instagram = UIButton()
@@ -127,6 +147,8 @@ class ViewController: UIViewController {
         view.addSubview(instaLabel)
         instaLabel.translatesAutoresizingMaskIntoConstraints = false
         instaLabel.text = "Instagram"
+        instaLabel.textColor = textColor
+        
         instaLabel.topAnchor.constraint(equalTo: instagram.bottomAnchor, constant: 0).isActive = true
         instaLabel.heightAnchor.constraint(equalTo: instagram.heightAnchor, multiplier: 0.4).isActive = true
         instaLabel.centerXAnchor.constraint(equalTo: instagram.centerXAnchor, constant:0).isActive = true
@@ -148,6 +170,7 @@ class ViewController: UIViewController {
         quoteLabel.topAnchor.constraint(equalTo: quote.bottomAnchor, constant: 0).isActive = true
         quoteLabel.heightAnchor.constraint(equalTo: quote.heightAnchor, multiplier: 0.4).isActive = true
         quoteLabel.centerXAnchor.constraint(equalTo: quote.centerXAnchor, constant:0).isActive = true
+        quoteLabel.textColor = textColor
         
         
         
@@ -167,6 +190,7 @@ class ViewController: UIViewController {
         orderLabel.topAnchor.constraint(equalTo: order.bottomAnchor, constant: 0).isActive = true
         orderLabel.heightAnchor.constraint(equalTo: order.heightAnchor, multiplier: 0.4).isActive = true
         orderLabel.centerXAnchor.constraint(equalTo: order.centerXAnchor, constant:0).isActive = true
+        orderLabel.textColor = textColor
         
         order.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
         order.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
@@ -188,6 +212,7 @@ class ViewController: UIViewController {
         historyLabel.topAnchor.constraint(equalTo: history.bottomAnchor, constant: 0).isActive = true
         historyLabel.heightAnchor.constraint(equalTo: history.heightAnchor, multiplier: 0.4).isActive = true
         historyLabel.centerXAnchor.constraint(equalTo: history.centerXAnchor, constant:0).isActive = true
+        historyLabel.textColor = textColor
     }
     
     @objc func quoteTap() {
