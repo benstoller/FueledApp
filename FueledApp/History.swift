@@ -17,6 +17,8 @@ class History: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
+        view.layer.contents = #imageLiteral(resourceName: "HistBackground").cgImage
+
         view.addSubview(mainStack)
         //setup main stack
         mainStack.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +28,7 @@ class History: UIViewController {
         mainStack.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.0).isActive = true
         mainStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
+        /*
         //setup title image
         mainStack.addArrangedSubview(TitleImage)
         TitleImage.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +36,7 @@ class History: UIViewController {
         TitleImage.heightAnchor.constraint(equalTo: TitleImage.widthAnchor, multiplier: 292/1144).isActive = true
         TitleImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         TitleImage.contentMode = .scaleAspectFit
+        */
         
         mainStack.addArrangedSubview(bodyText)
         bodyText.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +53,10 @@ class History: UIViewController {
         bodyText.minimumScaleFactor = 0.1
         
         var instr = ""
-        instr += "\nHistory text"
+        instr += "\nFueled was created by four students in the spring of 2015 at James Madison University. These students wanted to create a business that would bring locally sourced food on campus. The Fueled Food truck was born with the mission of providing our students with health conscious, ecological, and delicious meals."
         bodyText.text = instr
-        bodyText.textColor = .green
+        bodyText.textAlignment = .center
+        bodyText.textColor = .white
         
         
         mainStack.addArrangedSubview(menuButton)

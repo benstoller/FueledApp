@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let logoButton = UIButton(type: .custom)
+    let refButton = UIButton(type: .custom)
     var bigButton = true
     var truck = UIImageView()
     var treeTrunk = UIImageView()
@@ -23,10 +24,22 @@ class ViewController: UIViewController {
         //view.backgroundColor = UIColor(red: 135, green: 206, blue: 235)//sky blue
         textColor = .white
         view.backgroundColor = .white
-        createButtons()
         
-        view.layer.contents = #imageLiteral(resourceName: "galaxy").cgImage
+        view.layer.contents = #imageLiteral(resourceName: "background2").cgImage
         //
+        
+        
+        view.addSubview(refButton)
+        refButton.translatesAutoresizingMaskIntoConstraints = false
+        refButton.addTarget(self, action: #selector(logoTap), for: .touchUpInside)
+        refButton.setBackgroundImage(UIImage(named: "fueledLogo"), for: .normal)
+        refButton.heightAnchor.constraint(equalTo: refButton.widthAnchor, multiplier: 1).isActive = true
+        refButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        //refButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.width/2).isActive = true
+        refButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        refButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        refButton.layer.zPosition -= 1000
+
         
         //create logo button
         view.addSubview(logoButton)
@@ -37,6 +50,9 @@ class ViewController: UIViewController {
         logoButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         logoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.width/2).isActive = true
         //logoButton.showsTouchWhenHighlighted = false
+        logoButton.layer.zPosition -= 5
+        
+        
         
         //Add design stuff
         
@@ -59,7 +75,10 @@ class ViewController: UIViewController {
         
         treeLeaves.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
         treeLeaves.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        treeLeaves.layer.zPosition -= 7
+
         
+        /*
         view.addSubview(truck)
         truck.translatesAutoresizingMaskIntoConstraints = false
         truck.image = UIImage(named: "truck1")
@@ -71,10 +90,9 @@ class ViewController: UIViewController {
         truck.contentMode = .scaleAspectFit
 
         truck.layer.zPosition -= 10
-        
+        */
         //treeLeaves.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         //treeLeaves.contentMode = .scaleAspectFit
-        treeLeaves.layer.zPosition -= 7
  
         /*
         view.addSubview(treeLeaves)
@@ -90,6 +108,7 @@ class ViewController: UIViewController {
         //treeLeaves.contentMode = .scaleAspectFit
         treeLeaves.layer.zPosition -= 7
  */
+        createButtons()
         logoTap()
     }
     
@@ -117,7 +136,10 @@ class ViewController: UIViewController {
         pplOfButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25).isActive = true
         pplOfButton.setBackgroundImage(UIImage(named: "hotpepper"), for: .normal)
 
-        pplOfButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/5).isActive = true
+        //pplOfButton.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/6).isActive = true
+        //pplOfButton.bottomAnchor.constraint(equalTo: refButton.topAnchor, constant: 0).isActive = true
+        
+        
         //pplOfButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/2 - self.view.frame.width*0.1).isActive = true
         //looks a little off with the commented code from above so i changed the constarint to the code below
         pplOfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
@@ -127,6 +149,7 @@ class ViewController: UIViewController {
         pplOfLabel.translatesAutoresizingMaskIntoConstraints = false
         pplOfLabel.text = "People Of"
         pplOfLabel.topAnchor.constraint(equalTo: pplOfButton.bottomAnchor, constant: 0).isActive = true
+        pplOfLabel.bottomAnchor.constraint(equalTo: refButton.topAnchor, constant: -10).isActive = true
         pplOfLabel.heightAnchor.constraint(equalTo: pplOfButton.heightAnchor, multiplier: 0.4).isActive = true
         pplOfLabel.centerXAnchor.constraint(equalTo: pplOfButton.centerXAnchor, constant:0).isActive = true
         pplOfLabel.textColor = textColor
@@ -140,8 +163,10 @@ class ViewController: UIViewController {
         instagram.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
         instagram.setBackgroundImage(UIImage(named: "eggplant"), for: .normal)
         
-        instagram.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/16).isActive = true
-        instagram.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/5).isActive = true
+        instagram.topAnchor.constraint(equalTo: refButton.bottomAnchor, constant: 0).isActive = true
+        //instagram.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/5).isActive = true
+        
+        instagram.trailingAnchor.constraint(equalTo: refButton.leadingAnchor, constant: 0).isActive = true
         
         let instaLabel = UILabel()
         view.addSubview(instaLabel)
@@ -161,7 +186,9 @@ class ViewController: UIViewController {
         quote.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         quote.setBackgroundImage(UIImage(named: "corn"), for: .normal)
         
-        quote.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
+        //quote.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
+        quote.bottomAnchor.constraint(equalTo: refButton.centerYAnchor, constant: 0).isActive = true
+
         quote.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/8).isActive = true
         let quoteLabel = UILabel()
         view.addSubview(quoteLabel)
@@ -183,6 +210,11 @@ class ViewController: UIViewController {
         order.heightAnchor.constraint(equalTo: order.widthAnchor, multiplier: 1.0).isActive = true
         order.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         
+        //order.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
+        order.bottomAnchor.constraint(equalTo: refButton.centerYAnchor, constant: 0).isActive = true
+        
+        order.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
+        
         let orderLabel = UILabel()
         view.addSubview(orderLabel)
         orderLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -192,9 +224,6 @@ class ViewController: UIViewController {
         orderLabel.centerXAnchor.constraint(equalTo: order.centerXAnchor, constant:0).isActive = true
         orderLabel.textColor = textColor
         
-        order.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 - self.view.frame.height/9).isActive = true
-        order.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5.5/8).isActive = true
-        
         let history = UIButton()
         view.addSubview(history)
         history.translatesAutoresizingMaskIntoConstraints = false
@@ -203,8 +232,10 @@ class ViewController: UIViewController {
         history.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         history.setBackgroundImage(UIImage(named: "greenpepper"), for: .normal)
         
-        history.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/16).isActive = true
-        history.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width*5/8).isActive = true
+        //history.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/2 + self.view.frame.height/16).isActive = true
+        history.topAnchor.constraint(equalTo: refButton.bottomAnchor, constant: 0).isActive = true
+
+        history.leadingAnchor.constraint(equalTo: refButton.trailingAnchor, constant: 0).isActive = true
         let historyLabel = UILabel()
         view.addSubview(historyLabel)
         historyLabel.translatesAutoresizingMaskIntoConstraints = false
