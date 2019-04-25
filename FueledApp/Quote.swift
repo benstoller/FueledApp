@@ -9,62 +9,54 @@
 import UIKit
 
 class Quote: UIViewController {
+    //text of the quote
     let bodyText = UILabel()
+    //container for everything on the page
     let mainStack = UIStackView()
-    let TitleImage = UIImageView()
+    //list of all the possible quotes
     var listOfQuotes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //function call to make the list of quotes
         makeQuoteList();
-        //if list is empty, app will crash
+        //picks a random quote from the list; if list is empty, app will crash
         let curQuote = listOfQuotes.randomElement()!
         
-        //view.backgroundColor = .black
         view.addSubview(mainStack)
-        //setup main stack
+        //setup main stack; see history.swift for more details on this
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         mainStack.axis = .vertical
         mainStack.distribution = .fill
         mainStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         mainStack.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.0).isActive = true
         mainStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        
-        /*
-        //setup title image
-        mainStack.addArrangedSubview(TitleImage)
-        TitleImage.translatesAutoresizingMaskIntoConstraints = false
-        TitleImage.image = UIImage(named: "onion")
-        TitleImage.heightAnchor.constraint(equalTo: TitleImage.widthAnchor, multiplier: 292/1144).isActive = true
-        TitleImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-        TitleImage.contentMode = .scaleAspectFit
-        */
-        
+
+        //setup the text for the quote; see history.text for more details on this
         mainStack.addArrangedSubview(bodyText)
         bodyText.translatesAutoresizingMaskIntoConstraints = false
         bodyText.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
         //text.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0)
         //text.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0)
         bodyText.numberOfLines = 0
-        //text.layer.borderColor = UIColor(red: 2, green: 234, blue: 255).cgColor
-        //text.layer.borderWidth = 2
         bodyText.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         bodyText.font = UIFont.init(name: "Menlo", size: 50)
         bodyText.adjustsFontSizeToFitWidth = true
         //text.baselineAdjustment = .alignCenters
         bodyText.minimumScaleFactor = 0.1
         
-        var instr = ""
-        instr += curQuote
-        bodyText.text = instr
+        //sets the quote text
+        var quoteText = ""
+        quoteText += curQuote
+        bodyText.text = quoteText
         bodyText.textAlignment = .center
-        
         bodyText.textColor = .white
-        self.view.backgroundColor = UIColor(red: 77, green: 130, blue: 76)
+        //self.view.backgroundColor = UIColor(red: 77, green: 130, blue: 76)
+        //sets the background image
         view.layer.contents = #imageLiteral(resourceName: "wood2").cgImage
 
-        
+        //adds the menu button to go back to the home page; see history menu button for more details
         mainStack.addArrangedSubview(menuButton)
         menuButton.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
         menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor, multiplier: 0.17).isActive = true
@@ -88,6 +80,7 @@ class Quote: UIViewController {
         self.dismiss(animated:true, completion: nil)
     }
     
+    //makes a list of quotes
     func makeQuoteList() {
         listOfQuotes.append("Let things taste the way they are")
         listOfQuotes.append("A healthy diet is a solution to many of our health-care problems. It's the most important solution")
